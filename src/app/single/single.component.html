@@ -1,0 +1,134 @@
+<!-- product added to cart modal--> 
+<div class="modal1 mfp-hide" id="addToCartModal">
+    <div class="block divcenter" style="background-color: #FFF; max-width: 500px;">
+        <div class="center" style="padding: 30px 30px 30px 30px;">
+        <h3 class="">Added To Cart!</h3>		
+            <p class="color" style="font-weight: bold;">
+                <span id="modalQuantity"></span> x <span id="modalTitle"></span> (<span id="modalSku"></span>)
+            </p>
+            <img class="animated fadeIn" data-animate="fadeIn" src="{{ currentProduct.images[0] }}" style="width: 100%;">
+        </div>
+        <div class="section center nomargin" style="padding: 30px;">
+            <a href="#" class="button button-light font-body" onclick="$.magnificPopup.close();return false;">X</a>
+            <a href="/shop" class="button button-dark font-body">Other Artwork</a>
+            <a href="/cart" class="button font-body" onclick="">View Cart</a>	        
+        </div>
+    </div>
+</div>
+
+<!-- Page Title
+============================================= -->
+<section id="page-title" class="page-title-center ">
+    <div class="container clearfix">
+        <h1>{{ currentProduct.name }}</h1>
+        <span style="margin-top: 20px">
+            <a href="/about" style="text-transform: uppercase;">Artist: {{ currentProduct.metadata.artist }}</a>
+            &emsp;<a href="/shop/{{currentCategory.slug}}" style="text-transform: uppercase;"> Category: {{ currentCategory.name }}</a>
+        </span>
+    </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+    <div class="content-wrap" style="background: url('../../images/introduction-bg.jpg') repeat; background-size: 300px;">
+        <div class="container clearfix">
+            <div class="nobottommargin postcontent clearfix"> <!--  .  postcontent -->
+                <img class="animated fadeIn" data-animate="fadeIn" src="{{ currentProduct.images[0] }}" style="margin-bottom: 40px; width: 100%;">
+                <div style="border: 1px dashed #333; padding: 40px; margin-top: 0px; background: #fff;">{{ currentProduct.description }}</div>
+            </div>
+            <div class="sidebar sticky-sidebar-wrap nobottommargin col_last clearfix" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                <div class="scwStickySidebar">
+                    <div class="sidebar-widgets-wrap">
+                        <div class="sticky-sidebar">
+                            <div class="widget quick-contact-widget clearfix">
+                                <div class="card bg-light">
+                                    <div class="card-header">Purchase Now</div>
+                                    <div class="card-body">
+                                        <div class="quick-contact-form-result"></div>
+                                        <!-- <form class="redirect-to-cart" action="/api/cart" method="post" class="quick-contact-form nobottommargin" novalidate="novalidate"> -->
+                                        <form id="addToCart" class="cart_item nomargin"  data-id="{{ currentProduct.id }}" class="quick-contact-form nobottommargin" novalidate="novalidate">
+                                            <div class="form-process"></div>
+                                            <input type="hidden" class="required sm-form-control input-block-level" id="quick-contact-form-name" name="name" value="1" placeholder="Full Name" />
+                                            <div class=" quantity clearfix" style="width: 100%; margin-bottom: .75rem;">
+                                                <input type="button" value="-" class="minus" style="width:33.33%">
+                                                <input type="text" name="quantity" value="1" class="qty" style="width:33.33%">
+                                                <input type="button" value="+" class="plus" style="width:33.33%">
+                                            </div>
+                                            <input type="hidden" name="productId" value="{{ currentProduct.id }}" />
+                                            <input type="hidden" name="title" value="{{ currentProduct.name }}" />
+                                            <input type="hidden" name="image" value="{{ currentProduct.images[0] }}" />
+                                            <input type="hidden" name="category" value="{{ currentCategory.slug }}" />
+                                            <select class="sm-form-control input-block-level" name="sku">
+                                                <option value="{{ sku.id }}|{{ sku.price }}" *ngFor="let sku of skus">$ {{ sku.price }}</option>
+                                            </select>
+                                            <input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
+                                            <button type="submit" class="button button-rounded btn-block nomargin" value="submit">Add To Cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="widget quick-contact-widget clearfix">
+                                <div class="card bg-light">
+                                    <div class="card-header">Ask A Question</div>
+                                    <div class="card-body">
+                                        <div class="quick-contact-form-result"></div>
+                                        <form id="quick-contact-form" name="quick-contact-form" action="/api/send-message" method="post" class="quick-contact-form nobottommargin" novalidate="novalidate">
+                                            <div class="form-process"></div>
+                                            <input type="text" class="required sm-form-control input-block-level" id="quick-contact-form-name" name="name" value="" placeholder="Full Name">
+                                            <input type="text" class="required sm-form-control email input-block-level" id="quick-contact-form-email" name="email" value="" placeholder="Email Address">
+                                            <input type="number" class="required sm-form-control number input-block-level" id="quick-contact-form-number" name="phone" value="" placeholder="Phone Number">
+                                            <textarea class="required sm-form-control input-block-level short-textarea" id="quick-contact-form-message" name="message" rows="4" cols="30" placeholder="Message"></textarea>
+                                            <input type="text" class="hidden" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="">
+                                            <button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="button  button-rounded btn-block nomargin" value="submit">Inquire Now</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="widget clearfix">
+                                <h4>Share</h4>
+                                <div>
+                                    <a href="#" class="social-icon si-colored si-small si-rounded si-facebook">
+                                        <i class="icon-facebook"></i>
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                    <a href="#" class="social-icon si-colored si-small si-rounded si-twitter">
+                                        <i class="icon-twitter"></i>
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                    <a href="#" class="social-icon si-colored si-small si-rounded si-pinterest">
+                                        <i class="icon-pinterest"></i>
+                                        <i class="icon-pinterest"></i>
+                                    </a>
+                                    <a href="#" class="social-icon si-colored si-small si-rounded si-gplus">
+                                        <i class="icon-gplus"></i>
+                                        <i class="icon-gplus"></i>
+                                    </a>
+                                    <a href="#" class="social-icon si-colored si-small si-rounded si-rss">
+                                        <i class="icon-rss"></i>
+                                        <i class="icon-rss"></i>
+                                    </a>
+                                    <a href="#" class="social-icon si-colored si-small si-rounded si-instagram">
+                                        <i class="icon-instagram"></i>
+                                        <i class="icon-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resize-sensor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
+                        <div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                            <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 730px; height: 683px;"></div>
+                        </div>
+                        <div class="resize-sensor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                            <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

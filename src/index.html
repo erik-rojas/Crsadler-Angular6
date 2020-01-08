@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta Info -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Sedona Web Services" />
+    <meta name="description" content="Custom-Tailored Tours & Retreats & Travel Planning in Sedona, Arizona." />
+    <meta name="keywords" content="sedona, az, retreats, tours, healing, meditation, yoga" />
+    
+    <base href="/">
+
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i|Pacifico:400" rel="stylesheet" type="text/css" />
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css" /> 
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/dark.css" type="text/css" />
+
+    <link rel="stylesheet" href="assets/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="assets/css/swiper.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/ecommerce.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/ecommerce-fonts.css" type="text/css" />
+
+    <link rel="stylesheet" href="assets/css/responsive.css" type="text/css" />
+
+    <link rel="stylesheet" href="assets/css/custom.css" type="text/css" />
+
+    <link rel="icon" href="/favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Document Title -->
+    <title>Fire Art Website</title>
+  </head>
+  <body class="stretched side-push-panel sticky-footer" data-loader="1" data-loader-color="#f1f1f1" style="overflow: show;">
+    <app-root></app-root>
+  </body>
+  <!-- JavaScripts -->
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/functions.js"></script>
+  <script>
+		$('.cart_item a.remove').on('click', (e) => {
+			console.log($(e.target).closest('td'))
+			$.ajax({url: "/api/cart/" + $(e.target).closest('td').attr('id'), type: "DELETE", success: function(data) {
+        		$(e.target).closest('.cart_item').remove()	        	
+	    	}});
+		})
+	</script>
+</html>

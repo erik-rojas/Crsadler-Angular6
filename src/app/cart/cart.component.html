@@ -1,0 +1,75 @@
+<script>
+        // Create our number formatter.
+    const currency = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0
+    });
+</script>
+    
+<section id="page-title" class="page-title-center">
+    <div class="container clearfix">
+        <h1>Cart</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cart</li>
+        </ol>
+    </div>
+</section>
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table cart">
+                    <thead>
+                        <tr>
+                            <th class="cart-product-remove">&nbsp;</th>
+                            <th class="cart-product-thumbnail">&nbsp;</th>
+                            <th class="cart-product-name">Product</th>
+                            <th class="cart-product-name">Sku</th>
+                            <th class="cart-product-price">Unit Price</th>
+                            <th class="cart-product-quantity">Quantity</th>
+                            <th class="cart-product-subtotal">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cart_item" *ngFor="let item of cart.skus">
+                            <td class="cart-product-remove" id="{{ item.id }}">
+                                <a class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+                            </td>
+
+                            <td class="cart-product-thumbnail">
+                                <a href="#"><img width="64" height="64" src="images/shop/thumbs/small/dress-3.jpg" alt="Pink Printed Dress"></a>
+                            </td>
+
+                            <td class="cart-product-name">
+                                <a href="#">{{ item.title }}</a>
+                            </td>
+
+                            <td class="cart-product-name">
+                                <a href="#">{{ item.skuId }}</a>
+                            </td>
+
+                            <td class="cart-product-price">
+                                <span class="amount">{{ item.price }}</span>
+                            </td>
+
+                            <td class="cart-product-quantity">
+                                <div class="quantity clearfix">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="text" name="quantity" value="2" class="qty">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </td>
+
+                            <td class="cart-product-subtotal">
+                                <span class="amount">{{ item.price * 2 }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
